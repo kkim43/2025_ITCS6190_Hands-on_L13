@@ -1,5 +1,4 @@
 # 2025 ITCS6190 Hands-on L13  
-## Serverless Spark ETL Pipeline on AWS
 
 **Name (ID):** Kiyoung Kim (801426261)  
 **Email:** kkim43@charlotte.edu  
@@ -13,7 +12,7 @@ When a new CSV review file is uploaded to S3, Lambda automatically triggers a Gl
 
 ---
 
-# 🌟 Project Goal
+# Project Goal
 
 This assignment simulates a real cloud data engineering workflow:
 
@@ -29,7 +28,7 @@ This builds a **no-touch automated pipeline** used in modern data engineering sy
 
 ---
 
-# 📁 Project Repository Structure
+# Project Repository Structure
 
 ```
 2025_ITCS6190_Hands-on_L13/
@@ -58,20 +57,11 @@ This builds a **no-touch automated pipeline** used in modern data engineering sy
 │           └── run-1763496832500-part-r-00000
 │
 └── screenshots/
-    ├── l13_001.jpg
-    ├── l13_002.jpg
-    ├── l13_003.jpg
-    ├── l13_004.jpg
-    ├── l13_005.jpg
-    ├── l13_006.jpg
-    ├── l13_007.jpg
-    ├── l13_008.jpg
-    └── l13_009.jpg
 ```
 
 ---
 
-# 🏗️ Architecture Diagram
+# Architecture Diagram
 
 ```
 S3 (Upload)
@@ -97,7 +87,7 @@ This design is **fully serverless**, automatically scalable, and event-driven.
 
 ---
 
-# 🚀 Step-by-Step Deployment
+# Step-by-Step Deployment
 
 ## **1️⃣ Create S3 Buckets**
 Two globally unique buckets:
@@ -172,9 +162,9 @@ Shows job trigger confirmation.
 
 ---
 
-# 🔥 Glue ETL Processing Details
+# Glue ETL Processing Details
 
-## ✔ Data Cleaning Steps
+## Data Cleaning Steps
 
 - Convert `rating` → integer  
 - Fill missing values  
@@ -184,49 +174,71 @@ Shows job trigger confirmation.
 
 ---
 
-# 📊 Spark SQL Analytics (4 Queries)
+# Spark SQL Analytics (4 Queries)
 
-### **1. Average Rating per Product (Provided)**  
-Generates mean rating + review count.
-
-Output folder:
-```
-output/Athena Results/product_rating_avg/
-```
+Below are the four Spark SQL queries executed in the Glue ETL job.
 
 ---
 
-### **2. Daily Review Count (Student Query)**  
-Shows number of reviews per day.
+### **1. Average Rating per Product**
+```sql
+SELECT 
+    product_id_upper, 
+    AVG(rating) AS average_rating,
+    COUNT(*) AS review_count
+FROM product_reviews
+GROUP BY product_id_upper
+ORDER BY average_rating DESC
+```
 
-Output folder:
-```
-output/Athena Results/daily_review_counts/
-```
+Output: `output/Athena Results/product_rating_avg/`
 
 ---
 
-### **3. Top 5 Most Active Customers (Student Query)**  
-Identifies users who posted the most reviews.
+### **2. Daily Review Count**
+```sql
+SELECT 
+    review_date,
+    COUNT(*) AS review_count
+FROM product_reviews
+GROUP BY review_date
+ORDER BY review_date
+```
 
-Output:
-```
-output/Athena Results/top_5_customers/
-```
+Output: `output/Athena Results/daily_review_counts/`
 
 ---
 
-### **4. Rating Distribution (Student Query)**  
-Counts reviews for ratings 0–5.
+### **3. Top 5 Most Active Customers**
+```sql
+SELECT 
+    customer_id,
+    COUNT(*) AS total_reviews
+FROM product_reviews
+GROUP BY customer_id
+ORDER BY total_reviews DESC
+LIMIT 5
+```
 
-Output:
-```
-output/Athena Results/rating_distribution/
-```
+Output: `output/Athena Results/top_5_customers/`
 
 ---
 
-# 📈 Glue Job Monitoring
+### **4. Rating Distribution**
+```sql
+SELECT 
+    rating,
+    COUNT(*) AS rating_count
+FROM product_reviews
+GROUP BY rating
+ORDER BY rating
+```
+
+Output: `output/Athena Results/rating_distribution/`
+
+---
+
+# Glue Job Monitoring
 
 Job completed successfully.
 
@@ -234,7 +246,7 @@ Job completed successfully.
 
 ---
 
-# 📂 Output Files (Final Results)
+# Output Files (Final Results)
 
 ## Processed Dataset
 ```
@@ -247,13 +259,13 @@ output/processed-data/
 
 ---
 
-# 📄 Sample Output File
+# Sample Output File
 
 ![sample file](screenshots/l13_009.jpg)
 
 ---
 
-# 🧹 Cleanup Instructions
+# Cleanup Instructions
 
 To avoid AWS charges:
 
