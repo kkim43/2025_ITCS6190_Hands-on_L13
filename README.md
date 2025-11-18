@@ -58,15 +58,15 @@ This builds a **no-touch automated pipeline** used in modern data engineering sy
 │           └── run-1763496832500-part-r-00000
 │
 └── screenshots/
-    ├── l13_001.png
-    ├── l13_002.png
-    ├── l13_003.png
-    ├── l13_004.png
-    ├── l13_005.png
-    ├── l13_006.png
-    ├── l13_007.png
-    ├── l13_008.png
-    └── l13_009.png
+    ├── l13_001.jpg
+    ├── l13_002.jpg
+    ├── l13_003.jpg
+    ├── l13_004.jpg
+    ├── l13_005.jpg
+    ├── l13_006.jpg
+    ├── l13_007.jpg
+    ├── l13_008.jpg
+    └── l13_009.jpg
 ```
 
 ---
@@ -108,7 +108,7 @@ Two globally unique buckets:
   `handsonfinalprocessed-itcs6190-l13-handson-kkim43`
 
 **Screenshot:**  
-![s3 buckets](screenshots/l13_001.png)
+![s3 buckets](screenshots/l13_001.jpg)
 
 ---
 
@@ -116,7 +116,7 @@ Two globally unique buckets:
 
 Uploading this file triggers the entire pipeline.
 
-![upload csv](screenshots/l13_002.png)
+![upload csv](screenshots/l13_002.jpg)
 
 ---
 
@@ -135,7 +135,7 @@ Attached policies:
 - Job Name: **process_reviews_job**
 - Script Source: `src/glue_etl_script.py`
 
-![glue script](screenshots/l13_005.png)
+![glue script](screenshots/l13_005.jpg)
 
 ---
 
@@ -160,7 +160,7 @@ Purpose: Start Glue job on S3 upload
 }
 ```
 
-![lambda trigger](screenshots/l13_003.png)
+![lambda trigger](screenshots/l13_003.jpg)
 
 ---
 
@@ -168,7 +168,7 @@ Purpose: Start Glue job on S3 upload
 
 Shows job trigger confirmation.
 
-![lambda logs](screenshots/l13_004.png)
+![lambda logs](screenshots/l13_004.jpg)
 
 ---
 
@@ -230,7 +230,7 @@ output/Athena Results/rating_distribution/
 
 Job completed successfully.
 
-![glue monitoring](screenshots/l13_006.png)
+![glue monitoring](screenshots/l13_006.jpg)
 
 ---
 
@@ -242,14 +242,14 @@ output/processed-data/
 ```
 
 ## Analytics Outputs (All 4 Queries)
-![processed output](screenshots/l13_007.png)
-![athena results](screenshots/l13_008.png)
+![processed output](screenshots/l13_007.jpg)
+![athena results](screenshots/l13_008.jpg)
 
 ---
 
 # 📄 Sample Output File
 
-![sample file](screenshots/l13_009.png)
+![sample file](screenshots/l13_009.jpg)
 
 ---
 
