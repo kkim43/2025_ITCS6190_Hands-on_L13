@@ -1,5 +1,4 @@
 # 2025 ITCS6190 Hands-on L13  
-## Serverless Spark ETL Pipeline on AWS
 
 **Name (ID):** Kiyoung Kim (801426261)  
 **Email:** kkim43@charlotte.edu
